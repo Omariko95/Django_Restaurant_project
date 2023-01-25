@@ -53,7 +53,7 @@ class DeleteIngredientView(LoginRequiredMixin, DeleteView):
 
 class MenuView(LoginRequiredMixin, ListView):
 
-    template_name = "Django_delights/Menu_list.html"
+    template_name = "Django_delights/menu_list.html"
     model = MenuItem
 
     def get_context_data(self, **kwargs):
@@ -139,16 +139,12 @@ class NewPurchaseView(LoginRequiredMixin, TemplateView):
         return redirect("/purchases")
 
 
-
-
-
-"""
 class ReportView(LoginRequiredMixin, TemplateView):
 
-    template_name = "/Django_delights/new_purchase.html"
+    template_name = "/Django_delights/reports.html"
 
     def get_context_data(self, **kwargs):
-        #context = super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context["purchases"] = Purchase.objects.all()
         revenue = Purchase.objects.aggregate(
             revenue=Sum("menu_item__price"))["revenue"]
@@ -163,8 +159,6 @@ class ReportView(LoginRequiredMixin, TemplateView):
         context["profit"] = revenue - total_cost
 
         return context
-
-"""
 
 #Define login and logout functions below
 

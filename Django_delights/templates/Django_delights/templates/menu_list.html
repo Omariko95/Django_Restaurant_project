@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %}Here are our current Menu items{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    <h2>Magic Potions</h2>
+    <button class="menu-button"><a href="{% url 'add_menu_item' %}">Add your new item to the menu by clicking here</a></button>
+    <button class="menu-button"><a href="{% url 'add_recipe_requirement' %}">Add a Recipe requirement for an existing menu item</a></button>
+    <hr/>
+    <ul class="menu-items">
+    {% for potion_item in object_list %}
+        <li>
+            <div class="menu-item-header">
+                <div class="menu-item-title">{{ menu_item.title }}</div>
+                <div class="menu-item-price">Gold Coins {{ menu_item.price|stringformat:".2f" }}</div>
+                <div>
+                    <button class="menu-button"><a href="{% url 'update_menu_item' menu_item.id %}"><span style="font-size: 0.6em">Edit</span></a></button>
+                    <button class="menu-button"><a href="{% url 'delete_menu_item' menu_item.id %}"><span style="font-size: 0.6em">Delete</span></a></button>
+                </div>
+            </div>
+            <div>Size :  {{ menu_item.size }}</div>
+            <h4>Ye Ingredients</h4>
+            <br>
+            <table class="inventory-table">
+                <thead>
+                    <tr>
+                        <th>Qty</th>
+                        <th>Name</th>
+                        <th>Cost</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for recipe_requirement in menu_item.reciperequirement_set.all %}
+                <tr>
+                    <td>{{ recipe_requirement.quantity }}</td>
+                    <td>{{ recipe_requirement.ingredient_required.name }}</td>
+                    <td>{{ recipe_requirement.required_cost }}</td>
+                    <td><a href="{% url 'update_recipe_requirement' recipe_requirement.id%}">Edit</a></td>
+                    <td><a href="{% url 'delete_recipe_requirement' recipe_requirement.id%}">Delete</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% for key, value in total_dict.items %}
+            {% if key == motion_item.id %}
+            <p>Total cost in ingredients :  {{ value.total_cost }}  (Dollars)</p>
+            <p>Profit* :  {{ value.profit_cost }}  (Dollars)</p>
+            {% endif %}
+            {% endfor %}
+            <p style="font-size: 0.7em">
+                * (This fee includes preperation time and taxes)</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

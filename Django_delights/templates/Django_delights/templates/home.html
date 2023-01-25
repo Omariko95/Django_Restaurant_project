@@ -1,0 +1,28 @@
+{% extends "/base.html" %}
+{% load static %}
+{% block title %}Django SuperStore Menu{% endblock %}
+{% block content %}
+<div class = "home">
+   <div>
+       <h1>This is the current Inventory</h1>
+       <ul class ="menu-items">
+       {% for menu_item in menu_items %}
+        <li>
+          <div class = "menu-item-header">
+           <div class= "menu-item-title">{{menu_item.title}}</div>
+           <div class= "menu-item-price">Dollars {{menu_item.price|stringformat:".2f" }} </div>
+           </div>
+           <div>
+               Size  : {{ menu_item.size }}
+           </div>
+           <ul class ="menu-item-ingredients">
+
+             <li>{{ menu_item.description }}
+           </ul>
+        </li>
+    </div>
+{ % endblock %}
+           
+
+
+

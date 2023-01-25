@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block head %}
+{% endblock %}
+{% block content %}
+    <h2>Purchased items</h2>
+    <button class="menu-button"><a href="{% url 'add_purchase' %}">Please enter your purchase</a></button>
+    <hr/>
+    <table class="inventory-table">
+        <thead>
+            <tr>
+                <th>Purchased Item</th>
+                <th>Price</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for purchase in object_list %}
+            <tr>
+                <td>{{ purchase.menu_item.menu_choice }} ({{ purchase.menu_item.size }})</td>
+                <td class="price">Gold Coins {{ purchase.menu_item.price|stringformat:".2f" }}</td>
+                <td>{{ purchase.date_purchased }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -68,6 +68,7 @@ class Ingredient(models.Model):
     KIWI = "Kiwi"
     CHEESE ="Cheese"
 
+
     INGREDIENT_CHOICES = [
         (OLIVE_OIL , "Olive oil") , (FLOUR , "Flour") , (BUTTER , "Butter"), (CHICKEN, "Chicken") ,(SUGAR , "Sugar") , 
         (SALT , "Salt"), (EGG , "Egg"), (RICE , "Rice"),(BEEF , "Beef") , (ONION , "Onion"), (LETTUCE , "Lettuce") , 
@@ -119,12 +120,8 @@ class RecipeRequirement(models.Model):
 
 
 class Purchase(models.Model):
-    
-    
     menu_item = models.ForeignKey(MenuItem ,on_delete=models.CASCADE)
     date_purchased = models.DateTimeField(auto_now_add=True)
-
-
     def __str__(self):
         return f"""
         You have purchased {self.menu_item} successfully , your date and timestamp is printed below for your records. 

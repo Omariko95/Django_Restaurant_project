@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h2>Please purchase items here</h2>
+    <form method = "POST">
+    <div>
+    {% csrf_token %}
+    {{ % form.as_p %}}
+    <input type ="submit" value="Submit">
+    </div>
+    </form>
+{% endblock %}
+
+

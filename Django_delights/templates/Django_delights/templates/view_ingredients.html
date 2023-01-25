@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %}Magic Potion Shop{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    <h2>Ingredients</h2>
+    <button class="menu-button"><a href="{% url 'add_ingredient' %} ">Add a new ingredient to the Inventory</a></button>
+    <hr/>
+    <table class="inventory-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ingredient in object_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'update_ingredient' ingredient.id %}">{{ ingredient.name }}</a>
+                </td>
+                <td>{{ ingredient.Ingredient_name }}</td>
+                <td>{{ ingredient.Ingredient_quantity }}</td>
+                <td>{{ ingredient.Ingredient_price}}
+                <a href="{% url 'delete_ingredient' ingredient.id %}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+{% endblock %}
