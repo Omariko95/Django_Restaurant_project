@@ -71,13 +71,13 @@ class Ingredient(models.Model):
     INGREDIENT_CHOICES = [
         (OLIVE_OIL , "Olive oil") , (FLOUR , "Flour") , (BUTTER , "Butter"), (CHICKEN, "Chicken") ,(SUGAR , "Sugar") , 
         (SALT , "Salt"), (EGG , "Egg"), (RICE , "Rice"),(BEEF , "Beef") , (ONION , "Onion"), (LETTUCE , "Lettuce") , 
-        (TOMATO , "Tomato") (PICKLES ,"Pickles") ,(RELISH, "Relish") , (CUCUMBER, "Cucumber") , (BLUEBERRY, "Blueberry"),
+        (TOMATO , "Tomato") , (PICKLES ,"Pickles") ,(RELISH, "Relish") , (CUCUMBER, "Cucumber") , (BLUEBERRY, "Blueberry"),
         (BANANAS, "Bananas") , (STRAWBERRY, "Strawberry") , (KIWI , "Kiwi") , (CHEESE , "CE")
     ]
     Ingredient_name = models.CharField(max_length= 20 , choices = INGREDIENT_CHOICES)
     Ingredient_quantity = models.FloatField(default=0)
     Ingredient_price = models.FloatField(default=0)
-    Menu_Item = models.ForeignKey(MenuItem , on_delete=models.CASCADE)
+
 
     def get_absolute_url(self):
         return "/ingredients"
@@ -86,7 +86,7 @@ class Ingredient(models.Model):
     
     def __str__(self):
         return f"""
-        The Ingredient {self.Ingredient_type} is available for { self.Ingredient_price } a unit/kg. 
+        The Ingredient {self.Ingredient_name} is available for { self.Ingredient_price } a unit/kg. 
         Quantity remaining is : {self.Ingredient_quantity}
         """
     
