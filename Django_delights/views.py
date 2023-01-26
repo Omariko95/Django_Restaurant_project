@@ -5,11 +5,11 @@ from django.views.generic.edit import UpdateView , DeleteView , CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout, login
 from django.contrib.auth.decorators import login_required
+from .forms import IngredientForm , RecipeRequirementForm , MenuItemForm , PurchaseForm
 import random
 from .models import Ingredient,MenuItem,RecipeRequirement,Purchase
 from django.urls import reverse_lazy
 from django.db.models import Sum , F 
-#from .forms import FILL IN!! <<<<<<
 
 
 
@@ -35,18 +35,18 @@ class IngredientsView(LoginRequiredMixin , ListView):
 class CreateIngredientsView(LoginRequiredMixin, CreateView):
     model = Ingredient
     template_name ="Django_delights/add_ingredient.html"
-    #form_class = IngredientForm
+    form_class = IngredientForm
 
 class UpdateIngredientView(LoginRequiredMixin, UpdateView):
     model = Ingredient
     template_name = "Django_delights/update_ingredient.html"
-    #form_class = IngredientForm
+    form_class = IngredientForm
 
 
 class DeleteIngredientView(LoginRequiredMixin, DeleteView):
     model = Ingredient
     template_name = "Django_delights/delete_ingredient.html"
-    #form_class = IngredientForm
+    form_class = IngredientForm
     success_url = "/ingredients"
 
 #Now let's move on to the MenuItem model:
@@ -72,12 +72,12 @@ class MenuView(LoginRequiredMixin, ListView):
 class NewMenuItemView(LoginRequiredMixin, CreateView):
     template_name = "/Django_delights/add_menu_item.html"
     model = MenuItem
-    #form_class = "MenuItemForm"
+    form_class = "MenuItemForm"
 
 class UpdateMenuItemView(LoginRequiredMixin, UpdateView):
     template_name = "/Django_delights/update_menu_item.html"
     model = MenuItem
-    #form_class = "MenuItemForm"
+    form_class = "MenuItemForm"
     success_url = "/menu"
     
     
@@ -85,7 +85,7 @@ class UpdateMenuItemView(LoginRequiredMixin, UpdateView):
 class DeleteMenuItemView(LoginRequiredMixin, DeleteView):
     template_name = "/Django_delights/delete_menu_item.html"
     model = MenuItem
-    #form_class = "MenuItemForm"
+    form_class = "MenuItemForm"
     success_url = "/menu"
 
 
@@ -95,18 +95,18 @@ class DeleteMenuItemView(LoginRequiredMixin, DeleteView):
 class NewRecipeRequirementView(LoginRequiredMixin , CreateView):
     template_name = "Django_delights/add_recipe_requirement"
     model = RecipeRequirement
-    #form_class = RecipeRequirementForm
+    form_class = RecipeRequirementForm
 
 class UpdateRecipeRequirementView(LoginRequiredMixin, UpdateView):
     template_name = "Django_delights/update_recipe_requirement"
     model = RecipeRequirement
-    #form_class = RecipeRequirementForm
+    form_class = RecipeRequirementForm
     success_url ="/menu"
 
 class DeleteRecipeRequirementView(LoginRequiredMixin, DeleteView):
     template_name = "Django_delights/delete_recipe_requirement"
     model = RecipeRequirement
-    #form_class = RecipeRequirementForm
+    form_class = RecipeRequirementForm
     success_url = "/menu"
 
 #Lastly we will create the Purchaseview
