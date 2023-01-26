@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Django_delights'
+    'Django_delights.apps.DjangoDelightsConfig'
 ]
 
 MIDDLEWARE = [
