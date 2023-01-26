@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}-- Django Delights Restaurant Login --{% endblock %}
+
+{% block content %}
+  <div class="login-form">
+    <h2>Please enter credentials below</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <button class="submit-button" type="submit">Submit</button>
+    </form>
+  </div>
+  <br>
+  <p>In case you need a clue, look no further... 'guesticle' and 'sillypassword123'.</p>
+{% endblock %}
