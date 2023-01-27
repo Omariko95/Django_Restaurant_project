@@ -8,7 +8,6 @@ from . import views
 urlpatterns = [
 	path('', views.HomeView.as_view() , name='home'),
   path('accounts/login/' , auth_views.LoginView.as_view(), name= "login"),
-  #path('logout/', LogoutView.as_view(next_page=settings.LOGOUT_REDIRECT_URL), name='logout'),
   path('ingredients/' , views.IngredientsView.as_view(), name ="ingredients"),
   path('ingredients/new', views.CreateIngredientsView.as_view(), name="add_ingredient"),
   path('ingredients/<slug:pk>/update', views.UpdateIngredientView.as_view() , name= "update_ingredient"),

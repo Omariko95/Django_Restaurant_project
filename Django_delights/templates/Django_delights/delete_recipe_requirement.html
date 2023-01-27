@@ -1,13 +1,13 @@
-{% extends 'base.html' % }
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
 
 <h2> Delete recipe requirements from inventory</h2>
-<form method = "post">
+<form action ="{% url 'Django_delights:delete_recipe_requirements' menu_item.id %}" method = "post">
    <div>
-   { % csrf_token %}
-   <p>Are you sure you want to delete "{{ object }}"?</p>
-   <input type ="submit" value ="Confirm"/>
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type ="submit" value ="Confirm"/>
    </div>
 </form>
 {% endblock %}

@@ -26,8 +26,7 @@
       {% endif %}
     </div>
     {% if user.is_authenticated %}
-      <p>Hi, {{ user.username }}!</p>
-      <p style="font-size: 0.8em">(Hey {{user.username}} , welcome back to our website!)</p>
+      <p style="font-size: 1.5em">Welcome to Django Delights {{user.username}}..Enjoy your visit!</p>
       <nav class="navbar">
         {% url 'home' as home_url %}
         {% url 'ingredients' as ingredients_url %}
@@ -42,7 +41,6 @@
       </nav>
     {% else %}
       <p>Hey Stranger, we would recommend you sign-in for the complete experience!</p>
-      <p>Here is a sneakpeak of our Menu</p>
       <nav class="navbar">
         {% url 'home' as home_url %}
         <a class="nav-item{% if request.path == home_url %} current-page{% endif %}" href="{% url 'home' %}">Home</a>

@@ -10,6 +10,7 @@ import random
 from .models import Ingredient,MenuItem,RecipeRequirement,Purchase
 from django.urls import reverse_lazy
 from django.db.models import Sum , F 
+from django.shortcuts import get_object_or_404
 
 
 
@@ -62,12 +63,13 @@ class NewMenuItemView(LoginRequiredMixin, CreateView):
     template_name = "Django_delights/add_menu_item.html"
     model = MenuItem
     form_class = MenuItemForm
+    success_url = "/menu_list"
 
 class UpdateMenuItemView(LoginRequiredMixin, UpdateView):
     template_name = "Django_delights/update_menu_item.html"
     model = MenuItem
     form_class = MenuItemForm
-    success_url = "/menu"
+    success_url = "/menu_list"
     
     
 
@@ -75,7 +77,7 @@ class DeleteMenuItemView(LoginRequiredMixin, DeleteView):
     template_name = "Django_delights/delete_menu_item.html"
     model = MenuItem
     form_class = MenuItemForm
-    success_url = "/menu"
+    success_url = "/menu_list"
 
 
 #Let's handle some recipe requirements 
@@ -98,6 +100,14 @@ class DeleteRecipeRequirementView(LoginRequiredMixin, DeleteView):
     model = RecipeRequirement
     form_class = RecipeRequirementForm
     success_url = "/menu_list"
+
+    def recipe_delete(request, pk):
+        delete = get_object_or_404(RecipeRequirement, pk=pk)  # Get your current cat
+        if request.method == 'POST':         # If method is POST,
+            delete.delete()                     # delete the cat.
+            return redirect('/menu_list')             
+        return render(request, 'menu_list.html', {'cat': delete})
+
 
 #Lastly we will create the Purchaseview
 
@@ -126,7 +136,7 @@ class NewPurchaseView(LoginRequiredMixin, TemplateView):
             required_ingredient.save()
 
         purchase.save()
-        return redirect("/purchases")
+        return redirect("/purchase")
 
 
 class ReportView(LoginRequiredMixin, TemplateView):
