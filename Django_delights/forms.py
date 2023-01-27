@@ -1,25 +1,25 @@
-from django import forms
+from django.forms import ModelForm
 from .models import MenuItem , Ingredient , Purchase , RecipeRequirement
 
 
-class IngredientForm(forms.ModelForm):
+class IngredientForm(ModelForm):
     class Meta:
-        Model = Ingredient
+        model = Ingredient
         fields = "__all__"
 
 
-class MenuItemForm(forms.ModelForm):
+class MenuItemForm(ModelForm):
     class Meta:
-        Model = MenuItem
+        model = MenuItem
         fields = "__all__"
 
 
-class RecipeRequirementForm(forms.ModelForm):
+class RecipeRequirementForm(ModelForm):
     class Meta:
-        Model = RecipeRequirement
+        model = RecipeRequirement
         fields = "__all__"
 
-class PurchaseForm(forms.ModelForm):
+class PurchaseForm(ModelForm):
     class Meta:
-        Model = Purchase
+        model = Purchase
         fields = "__all__"

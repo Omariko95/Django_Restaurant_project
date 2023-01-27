@@ -14,7 +14,7 @@ from django.db.models import Sum , F
 
 
 # Create your views here.
-class HomeView(TemplateView):
+class HomeView(LoginRequiredMixin, TemplateView):
     template_name = "Django_delights/home.html"
 
     def get_context_data(self, **kwargs):
@@ -57,36 +57,24 @@ class MenuView(LoginRequiredMixin, ListView):
     template_name = "Django_delights/menu_list.html"
     model = MenuItem
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        total_dict = {}
-
-        for item in MenuItem.objects.all():
-            total_cost = 0 
-            for req in item.reciperequirement_set.all():
-                total_cost += req.req_cost()
-            total_dict[req.id] = {'total_cost': round(total_cost, 2),'profit_cost':round(req.price - total_cost, 2)}
-        context["total_dict"] = total_dict
-        return context 
-
 
 class NewMenuItemView(LoginRequiredMixin, CreateView):
-    template_name = "/Django_delights/add_menu_item.html"
+    template_name = "Django_delights/add_menu_item.html"
     model = MenuItem
-    form_class = "MenuItemForm"
+    form_class = MenuItemForm
 
 class UpdateMenuItemView(LoginRequiredMixin, UpdateView):
-    template_name = "/Django_delights/update_menu_item.html"
+    template_name = "Django_delights/update_menu_item.html"
     model = MenuItem
-    form_class = "MenuItemForm"
+    form_class = MenuItemForm
     success_url = "/menu"
     
     
 
 class DeleteMenuItemView(LoginRequiredMixin, DeleteView):
-    template_name = "/Django_delights/delete_menu_item.html"
+    template_name = "Django_delights/delete_menu_item.html"
     model = MenuItem
-    form_class = "MenuItemForm"
+    form_class = MenuItemForm
     success_url = "/menu"
 
 
@@ -94,21 +82,22 @@ class DeleteMenuItemView(LoginRequiredMixin, DeleteView):
 
 
 class NewRecipeRequirementView(LoginRequiredMixin , CreateView):
-    template_name = "Django_delights/add_recipe_requirement"
+    template_name = "Django_delights/add_recipe_requirement.html"
     model = RecipeRequirement
     form_class = RecipeRequirementForm
+    success_url ="/menu_list"
 
 class UpdateRecipeRequirementView(LoginRequiredMixin, UpdateView):
-    template_name = "Django_delights/update_recipe_requirement"
+    template_name = "Django_delights/update_recipe_requirement.html"
     model = RecipeRequirement
     form_class = RecipeRequirementForm
-    success_url ="/menu"
+    success_url ="/menu_list"
 
 class DeleteRecipeRequirementView(LoginRequiredMixin, DeleteView):
-    template_name = "Django_delights/delete_recipe_requirement"
+    template_name = "Django_delights/delete_recipe_requirement.html"
     model = RecipeRequirement
     form_class = RecipeRequirementForm
-    success_url = "/menu"
+    success_url = "/menu_list"
 
 #Lastly we will create the Purchaseview
 
@@ -122,7 +111,7 @@ class NewPurchaseView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["potion_items"] = [X for X in MenuItem.objects.all() if X.available()]
+        context["menu_items"] = [X for X in MenuItem.objects.all() if X.available()]
         return context
 
     def post(self, request):
@@ -142,7 +131,7 @@ class NewPurchaseView(LoginRequiredMixin, TemplateView):
 
 class ReportView(LoginRequiredMixin, TemplateView):
 
-    template_name = "/Django_delights/reports.html"
+    template_name = "Django_delights/reports.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -160,15 +149,3 @@ class ReportView(LoginRequiredMixin, TemplateView):
         context["profit"] = revenue - total_cost
 
         return context
-
-#Define login and logout functions below
-
-
-def logout(request):
-    logout(request)
-    return redirect("home")
-
-
-def login(request):
-    return redirect('')
-

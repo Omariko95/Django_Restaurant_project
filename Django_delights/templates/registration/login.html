@@ -5,7 +5,7 @@
 {% block content %}
   <div class="login-form">
     <h2>Please enter credentials below</h2>
-    <form method="post">
+    <form class ="login" method="post">
       {% csrf_token %}
       {{ form }}
       <button class="submit-button" type="submit">Submit</button>

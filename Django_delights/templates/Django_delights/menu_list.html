@@ -4,20 +4,16 @@
 {% block head %}
 {% endblock %}
 {% block content %}
-    <h2>Magic Potions</h2>
-    <button class="menu-button"><a href="{% url 'add_menu_item' %}">Add your new item to the menu by clicking here</a></button>
-    <button class="menu-button"><a href="{% url 'add_recipe_requirement' %}">Add a Recipe requirement for an existing menu item</a></button>
+    <h2>Menu</h2>
+    <button class="menu-button"><a href="{% url 'new_menu_item' %}">Add your new item to the menu by clicking here</a></button>
+    <button class="menu-button"><a href="{% url 'new_recipe_requirement' %}">Add a Recipe requirement for an existing menu item</a></button>
     <hr/>
     <ul class="menu-items">
     {% for potion_item in object_list %}
         <li>
             <div class="menu-item-header">
-                <div class="menu-item-title">{{ menu_item.title }}</div>
-                <div class="menu-item-price">Gold Coins {{ menu_item.price|stringformat:".2f" }}</div>
-                <div>
-                    <button class="menu-button"><a href="{% url 'update_menu_item' menu_item.id %}"><span style="font-size: 0.6em">Edit</span></a></button>
-                    <button class="menu-button"><a href="{% url 'delete_menu_item' menu_item.id %}"><span style="font-size: 0.6em">Delete</span></a></button>
-                </div>
+                <div class="menu-item-title">{{ menu_item.menu_choice}}</div>
+                <div class="menu-item-price">All prices listed in CAD{{ menu_item.price|stringformat:".2f" }}</div>
             </div>
             <div>Size :  {{ menu_item.size }}</div>
             <h4>Ye Ingredients</h4>

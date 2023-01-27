@@ -75,7 +75,7 @@ class Ingredient(models.Model):
         (TOMATO , "Tomato") , (PICKLES ,"Pickles") ,(RELISH, "Relish") , (CUCUMBER, "Cucumber") , (BLUEBERRY, "Blueberry"),
         (BANANAS, "Bananas") , (STRAWBERRY, "Strawberry") , (KIWI , "Kiwi") , (CHEESE , "CE")
     ]
-    Ingredient_name = models.CharField(max_length= 20 , choices = INGREDIENT_CHOICES)
+    Ingredient_name = models.CharField(max_length= 50 , unique =True ,choices = INGREDIENT_CHOICES)
     Ingredient_quantity = models.FloatField(default=0)
     Ingredient_price = models.FloatField(default=0)
 
@@ -84,7 +84,6 @@ class Ingredient(models.Model):
         return "/ingredients"
 
 
-    
     def __str__(self):
         return f"""
         The Ingredient {self.Ingredient_name} is available for { self.Ingredient_price } a unit/kg. 
@@ -102,26 +101,26 @@ class RecipeRequirement(models.Model):
 
    def __str__(self):
     return f"""
-    
     menu_item = [{self.menu_item.__str__()}] ;
     ingredient = {self.ingredient_required.Ingredient_name};
     quantity = {self.quantity}
     
     """
 
-    def get_absolute_url(self):
-        return ("/menu")
+   def get_absolute_url(self):
+        return "/menu"
     
-    def enough(self):
+   def enough(self):
         return self.quantity <= self.ingredient_required.Ingredient_quantity
     
-    def required_cost(self):
+   def required_cost(self):
         return (self.quantity * self.ingredient_required.Ingredient_price)
 
 
 class Purchase(models.Model):
     menu_item = models.ForeignKey(MenuItem ,on_delete=models.CASCADE)
     date_purchased = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return f"""
         You have purchased {self.menu_item} successfully , your date and timestamp is printed below for your records. 
