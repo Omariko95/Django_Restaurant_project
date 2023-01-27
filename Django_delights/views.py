@@ -3,7 +3,7 @@ from django.views.generic import ListView , CreateView
 from django.views.generic.base import TemplateView , TemplateResponseMixin , RedirectView
 from django.views.generic.edit import UpdateView , DeleteView , CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import logout, login
+from django.contrib.auth import logout, login , authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import IngredientForm , RecipeRequirementForm , MenuItemForm , PurchaseForm
 import random
@@ -14,7 +14,6 @@ from django.db.models import Sum , F
 
 
 # Create your views here.
-
 class HomeView(TemplateView):
     template_name = "Django_delights/home.html"
 
@@ -24,6 +23,8 @@ class HomeView(TemplateView):
         context["menu_items"] = MenuItem.objects.all()
         context["purchases"] = Purchase.objects.all()
         return context
+
+
 
 #Let's work with Ingredients
 
@@ -169,5 +170,5 @@ def logout(request):
 
 
 def login(request):
-    return redirect("home")
+    return redirect('')
 

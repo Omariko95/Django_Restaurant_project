@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
 	path('', views.HomeView.as_view() , name='home'),
-  path('accounts/login/' , auth_views.LoginView.as_view(), name= "login"),
+  path('accounts/login/' , auth_views.LoginView.as_view(template_name = 'registration/login.html' , redirect_field_name = 'home'), name= "login"),
   path('logout/' , views.logout , name="logout"),
   path('ingredients/' , views.IngredientsView.as_view(), name ="ingredients"),
   path('ingredients/new', views.CreateIngredientsView.as_view(), name= "add_ingredient"),

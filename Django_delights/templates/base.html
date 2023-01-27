@@ -31,7 +31,7 @@
       <nav class="navbar">
         {% url 'home' as home_url %}
         {% url 'ingredients' as ingredients_url %}
-        {% url 'potions' as potions_url %}
+        {% url 'potions' as menu_url %}
         {% url 'purchases' as purchases_url %}
         {% url 'reports' as reports_url %}
         <a class="nav-item{% if request.path == home_url %} current-page{% endif %}" href="{% url 'home' %}">Home</a>
@@ -41,11 +41,10 @@
         <a class="nav-item{% if request.path == reports_url %} current-page{% endif %}" href="{% url 'reports' %}">Reports</a>
       </nav>
     {% else %}
-      <p>Hey Stranger, we would recommend you signup for the complete experience!</p>
+      <p>Hey Stranger, we would recommend you sign-in for the complete experience!</p>
       <p>Here is a sneakpeak of our Menu</p>
       <nav class="navbar">
         {% url 'home' as home_url %}
-        <!--{% url 'about' as about_url %}-->
         <a class="nav-item{% if request.path == home_url %} current-page{% endif %}" href="{% url 'home' %}">Home</a>
       </nav>
     {% endif %}
