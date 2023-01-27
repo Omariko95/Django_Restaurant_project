@@ -6,17 +6,17 @@ from django.utils import timezone
 #Let's create a list of ingredients and their respective quantities and prices
 
 class MenuItem(models.Model):
-    DOUBLE_CHEESEBURGER = "DC"
-    SALAD = "SD"
-    BUTTER_CHICKEN = "BC"
-    TACO = "TO"
-    BURRITO = "BO"
-    SUNNYSIDEUP_EGGS = "SS"
-    STRAWBERRYKIWI_CHEESECAKE = "SC"
-    SMALL = 'S'
-    MEDIUM = 'M'
-    LARGE = 'L'
-    SUPERSIZED = 'SS'
+    DOUBLE_CHEESEBURGER = "Double Cheeseburger"
+    SALAD = "salad"
+    BUTTER_CHICKEN = "butter Chicken"
+    TACO = "taco"
+    BURRITO = "burrito"
+    SUNNYSIDEUP_EGGS = "sunnysideup eggs"
+    STRAWBERRYKIWI_CHEESECAKE = "strawberry_Cheesecake"
+    SMALL = 'Small'
+    MEDIUM = 'Medium'
+    LARGE = 'Large'
+    SUPERSIZED = 'SuperSized'
 
     SIZE_CHOICES = [ 
         (SMALL , 'Small') , (MEDIUM , 'Medium') , 
@@ -28,8 +28,8 @@ class MenuItem(models.Model):
         (SUNNYSIDEUP_EGGS, "SunnySideup Eggs") , (STRAWBERRYKIWI_CHEESECAKE , "StrawberryKiwi Cheesecake")
     ]
 
-    menu_choice = models.CharField(max_length=20 , choices = MENU_CHOICES )
-    size = models.CharField(max_length= 2 , choices=SIZE_CHOICES , default= MEDIUM)
+    menu_choice = models.CharField(max_length=50 , choices = MENU_CHOICES )
+    size = models.CharField(max_length= 20 , choices=SIZE_CHOICES , default= MEDIUM)
     price = models.FloatField(default= 0.00)
     description = models.CharField(max_length= 100)
 
@@ -38,7 +38,7 @@ class MenuItem(models.Model):
     
     def __str__(self):
         return f"""
-        You have picked a {self.SIZE_CHOICES} serving of {self.MENU_CHOICES},
+        You have picked a {self.size} serving of {self.menu_choice},
         the total cost is {self.price} $ 
         """
     def available(self):

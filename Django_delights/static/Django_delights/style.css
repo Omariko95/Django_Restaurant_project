@@ -211,7 +211,7 @@ body {
        color: #1b5535;
    }
    
-   .potion-items {
+   .menu-items {
        display: flex;
        flex-wrap: wrap;
        padding: 0;

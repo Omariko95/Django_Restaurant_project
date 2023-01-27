@@ -4,7 +4,7 @@
 <html>
 <head> 
    <meta charset ="utf-8">
-   <link rel="stylesheet" type ="text/css" href ="{% static 'Django_delights/style.css %}" />
+   <link rel="stylesheet" type ="text/css" href ="{% static 'Django_delights/style.css' %}" />
    
    
    <link rel="preconnect" href ="https://fonts.googleapis.com" >
@@ -36,9 +36,9 @@
         {% url 'reports' as reports_url %}
         <a class="nav-item{% if request.path == home_url %} current-page{% endif %}" href="{% url 'home' %}">Home</a>
         <a class="nav-item{% if request.path == ingredients_url %} current-page{% endif %}" href="{% url 'ingredients' %}">Ingredients</a>
-        <a class="nav-item{% if request.path == potions_url %} current-page{% endif %}" href="{% url 'menu' %}">Menu</a>
-        <a class="nav-item{% if request.path == purchases_url %} current-page{% endif %}" href="{% url 'purchases' %}">Purchases</a>
-        <!-- <a class="nav-item{% if request.path == reports_url %} current-page{% endif %}" href="{% url 'reports' %}">Reports</a> -->
+        <a class="nav-item{% if request.path == menu_url %} current-page{% endif %}" href="{% url 'menu' %}">Menu</a>
+        <a class="nav-item{% if request.path == purchases_url %} current-page{% endif %}" href="{% url 'purchase' %}">Purchases</a>
+        <a class="nav-item{% if request.path == reports_url %} current-page{% endif %}" href="{% url 'reports' %}">Reports</a>
       </nav>
     {% else %}
       <p>Hey Stranger, we would recommend you signup for the complete experience!</p>
@@ -47,7 +47,6 @@
         {% url 'home' as home_url %}
         <!--{% url 'about' as about_url %}-->
         <a class="nav-item{% if request.path == home_url %} current-page{% endif %}" href="{% url 'home' %}">Home</a>
-        <!--<a class="nav-item{% if request.path == about_url %} current-page{% endif %}" href="{% url 'about' %}">About</a>-->
       </nav>
     {% endif %}
   </header>
