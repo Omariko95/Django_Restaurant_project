@@ -10,9 +10,9 @@ class MenuItem(models.Model):
     SALAD = "salad"
     BUTTER_CHICKEN = "butter Chicken"
     TACO = "taco"
-    BURRITO = "burrito"
-    SUNNYSIDEUP_EGGS = "sunnysideup eggs"
-    STRAWBERRYKIWI_CHEESECAKE = "strawberry_Cheesecake"
+    BURRITO = "Burrito"
+    SUNNYSIDEUP_EGGS = "Sunnysideup eggs"
+    STRAWBERRYKIWI_CHEESECAKE = "Strawberry_Cheesecake"
     SMALL = 'Small'
     MEDIUM = 'Medium'
     LARGE = 'Large'
@@ -73,7 +73,7 @@ class Ingredient(models.Model):
         (OLIVE_OIL , "Olive oil") , (FLOUR , "Flour") , (BUTTER , "Butter"), (CHICKEN, "Chicken") ,(SUGAR , "Sugar") , 
         (SALT , "Salt"), (EGG , "Egg"), (RICE , "Rice"),(BEEF , "Beef") , (ONION , "Onion"), (LETTUCE , "Lettuce") , 
         (TOMATO , "Tomato") , (PICKLES ,"Pickles") ,(RELISH, "Relish") , (CUCUMBER, "Cucumber") , (BLUEBERRY, "Blueberry"),
-        (BANANAS, "Bananas") , (STRAWBERRY, "Strawberry") , (KIWI , "Kiwi") , (CHEESE , "CE")
+        (BANANAS, "Bananas") , (STRAWBERRY, "Strawberry") , (KIWI , "Kiwi") , (CHEESE , "CheeseCake")
     ]
     Ingredient_name = models.CharField(max_length= 50 , unique =True ,choices = INGREDIENT_CHOICES)
     Ingredient_quantity = models.FloatField(default=0)
@@ -86,7 +86,7 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return f"""
-        The Ingredient {self.Ingredient_name} is available for { self.Ingredient_price } a unit/kg. 
+        The Ingredient {self.Ingredient_name} is available for { self.Ingredient_price } $/kg. 
         Quantity remaining is : {self.Ingredient_quantity}
         """
     
