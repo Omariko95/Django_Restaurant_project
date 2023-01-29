@@ -31,9 +31,9 @@
                 <tbody>
                 {% for recipe_requirement in menu_item.reciperequirement_set.all %}
                 <tr>
-                    <td>{{ recipe_requirement.quantity }}</td>
+                    <td>{{ recipe_requirement.quantity | }}</td>
                     <td>{{ recipe_requirement.ingredient_required.Ingredient_name }}</td>
-                    <td>{{ recipe_requirement.required_cost }}</td>
+                    <td>{{ recipe_requirement.required_cost}}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
