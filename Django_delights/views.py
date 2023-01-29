@@ -131,13 +131,13 @@ class NewPurchaseView(LoginRequiredMixin, TemplateView):
         purchase = Purchase(menu_item=menu_item)
 
         for requirement in requirements.all():
-            required_ingredient = requirement.ingredient_required.Ingredient_name
+            required_ingredient = requirement.ingredient_required
             required_ingredient.Ingredient_quantity -= requirement.ingredient_required.Ingredient_quantity
+            required_ingredient.Ingredient_price -= requirement.ingredient_required.Ingredient_price
             required_ingredient.save()
 
         purchase.save()
         return redirect("/purchase")
-
 
 class ReportView(LoginRequiredMixin, TemplateView):
 

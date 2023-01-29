@@ -7,12 +7,12 @@ from django.utils import timezone
 
 class MenuItem(models.Model):
     DOUBLE_CHEESEBURGER = "Double Cheeseburger"
-    SALAD = "salad"
-    BUTTER_CHICKEN = "butter Chicken"
-    TACO = "taco"
+    SALAD = "Salad"
+    BUTTER_CHICKEN = "Butter Chicken"
+    TACO = "Taco"
     BURRITO = "Burrito"
-    SUNNYSIDEUP_EGGS = "Sunnysideup eggs"
-    STRAWBERRYKIWI_CHEESECAKE = "Strawberry_Cheesecake"
+    SUNNYSIDEUP_EGGS = "Sunnysideup Eggs"
+    STRAWBERRYKIWI_CHEESECAKE = "Strawberry Cheesecake"
     SMALL = 'Small'
     MEDIUM = 'Medium'
     LARGE = 'Large'
@@ -24,7 +24,7 @@ class MenuItem(models.Model):
     ]
 
     MENU_CHOICES = [
-        (DOUBLE_CHEESEBURGER , "Double_Cheeseburger") , (SALAD , "Salad") , (TACO, "Taco") , (BURRITO, "Burrito") , 
+        (DOUBLE_CHEESEBURGER , "Double Cheeseburger") , (SALAD , "Salad") , (TACO, "Taco") , (BURRITO, "Burrito") , 
         (SUNNYSIDEUP_EGGS, "SunnySideup Eggs") , (STRAWBERRYKIWI_CHEESECAKE , "StrawberryKiwi Cheesecake")
     ]
 
@@ -73,7 +73,7 @@ class Ingredient(models.Model):
         (OLIVE_OIL , "Olive oil") , (FLOUR , "Flour") , (BUTTER , "Butter"), (CHICKEN, "Chicken") ,(SUGAR , "Sugar") , 
         (SALT , "Salt"), (EGG , "Egg"), (RICE , "Rice"),(BEEF , "Beef") , (ONION , "Onion"), (LETTUCE , "Lettuce") , 
         (TOMATO , "Tomato") , (PICKLES ,"Pickles") ,(RELISH, "Relish") , (CUCUMBER, "Cucumber") , (BLUEBERRY, "Blueberry"),
-        (BANANAS, "Bananas") , (STRAWBERRY, "Strawberry") , (KIWI , "Kiwi") , (CHEESE , "CheeseCake")
+        (BANANAS, "Bananas") , (STRAWBERRY, "Strawberry") , (KIWI , "Kiwi") , (CHEESE , "Cheese")
     ]
     Ingredient_name = models.CharField(max_length= 50 , unique =True ,choices = INGREDIENT_CHOICES)
     Ingredient_quantity = models.FloatField(default=0)
@@ -86,8 +86,8 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return f"""
-        The Ingredient {self.Ingredient_name} is available for { self.Ingredient_price } $/kg. 
-        Quantity remaining is : {self.Ingredient_quantity}
+        The Ingredient {self.Ingredient_name} costs { self.Ingredient_price } $/kg. 
+        Quantity remaining is : {self.Ingredient_quantity} kg
         """
     
 
